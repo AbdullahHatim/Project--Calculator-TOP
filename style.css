@@ -28,20 +28,24 @@ body {
   padding: 20px;
   border-radius: 20px;
 }
-.resultContainer {
+.results {
   display: flex;
   justify-content: center;
   align-items: center;
   padding: 20px;
 }
-.resultContainer > input {
+#result {
+  box-sizing: border-box;
   width: 100%;
   height: 50px;
   border-radius: 20px;
+  padding: 20px;
+  font-size: 1.5em;
 }
 .buttons {
   display: flex;
   flex-direction: row-reverse;
+  justify-content: center;
   /* border: 1px pink solid; */
 }
 
