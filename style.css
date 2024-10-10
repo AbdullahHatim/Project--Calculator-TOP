@@ -1,7 +1,9 @@
 :root {
   --background-color: lightslategray;
   --primary-color: #3abef9;
+  --secondary-color: rgb(95, 108, 122);
   --text-color: white;
+  --secondary-text-color: #f9e63a;
 }
 html {
   font-size: 14pt;
@@ -40,7 +42,7 @@ body {
 .buttons {
   display: flex;
   flex-direction: row-reverse;
-  border: 1px pink solid;
+  /* border: 1px pink solid; */
 }
 
 .leftPanel,
@@ -63,14 +65,25 @@ body {
   max-width: 320px;
 }
 
-.leftPanel > button,
-.rightPanel > button {
+.primary,
+.secondary {
   height: 100px;
   border-radius: 50%;
   aspect-ratio: 1/1;
   font-size: 2.5em;
-  border: 1px black solid;
   background-color: var(--background-color);
+  border: none;
+  box-shadow: 0px 0px 7px 0px var(--secondary-color);
+}
+
+.primary:active,
+.secondary:active {
+  background-color: var(--secondary-color);
+}
+.primary {
   color: var(--text-color);
-  box-shadow: 0px 1px 0px 0px var(--background-color) inset;
+}
+
+.secondary {
+  color: var(--secondary-text-color);
 }
