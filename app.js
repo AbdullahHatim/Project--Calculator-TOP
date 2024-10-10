@@ -1,6 +1,7 @@
 let firstOperand = 0;
 let operator = "+";
 let secondOperand = 0;
+let displayValue = "";
 
 function add() {
   return [...arguments].reduce((tot, curr) => tot + curr);
