@@ -81,6 +81,30 @@ function handleAthematicMessage() {
   }, 1);
 }
 
+// Author Claude.ai
+function formatLargeNumber(number, maxDigits = 14) {
+  // Convert to string to count digits
+  let numStr = Math.abs(number).toString();
+
+  if (numStr.length <= maxDigits) {
+    // If within maxDigits, return as is
+    return number.toString();
+  } else {
+    // If more than maxDigits, use toExponential or toPrecision
+    if (
+      number >= 10 ** maxDigits ||
+      number <= -(10 ** maxDigits) ||
+      (number > 0 && number < 10 ** -(maxDigits - 1)) ||
+      (number < 0 && number > -(10 ** -(maxDigits - 1)))
+    ) {
+      // Use scientific notation for very large or very small numbers
+      return number.toExponential(maxDigits - 1); // 1 digit for integer part + (maxDigits-1) decimal places
+    } else {
+      // For numbers that don't need scientific notation, round to maxDigits significant digits
+      return number.toPrecision(maxDigits);
+    }
+  }
+}
 function getResult(str = "") {
   if (!str.includes(" ")) {
     str = `${str} + `;
@@ -97,7 +121,7 @@ function getResult(str = "") {
     handleAthematicMessage();
     return "Wrong Input";
   }
-  return result;
+  return formatLargeNumber(result, 8);
 }
 function calculate() {
   const operator = this.dataset.operator;
