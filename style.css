@@ -35,17 +35,7 @@ body {
   align-items: center;
   padding: 20px;
 }
-#display {
-  display: flex;
-  align-items: center;
-  overflow: hidden;
-  background-color: white;
-  width: 100%;
-  height: 100px;
-  border-radius: 20px;
-  padding: 20px;
-  font-size: 2.5em;
-}
+
 .buttons {
   display: flex;
   flex-direction: row-reverse;
@@ -59,6 +49,85 @@ body {
   gap: 10px;
   flex-wrap: wrap;
   grid-template-columns: repeat(4, 1fr);
+  grid-template-areas:
+    "display display display display"
+    "AC divide multiply backspace"
+    "seven eight nine minus"
+    "four five six plus"
+    "one two three equals"
+    "percent zero dot equals";
+}
+
+.secondary[data-operator="="] {
+  height: auto;
+  aspect-ratio: 0;
+}
+#display {
+  border-radius: 20px;
+  margin-bottom: 30px;
+  background-color: white;
+  height: 100px;
+  font-size: 2.5em;
+  width: 100%;
+  grid-area: display;
+}
+
+.Panel button[data-operator="AC"] {
+  grid-area: AC;
+}
+.Panel button[data-operator="/"] {
+  grid-area: divide;
+}
+.Panel button[data-operator="*"] {
+  grid-area: multiply;
+}
+.Panel button[data-operator="backspace"] {
+  grid-area: backspace;
+}
+.Panel button[data-number="1"] {
+  grid-area: one;
+}
+.Panel button[data-number="2"] {
+  grid-area: two;
+}
+.Panel button[data-number="3"] {
+  grid-area: three;
+}
+.Panel button[data-operator="-"] {
+  grid-area: minus;
+}
+.Panel button[data-number="4"] {
+  grid-area: four;
+}
+.Panel button[data-number="5"] {
+  grid-area: five;
+}
+.Panel button[data-number="6"] {
+  grid-area: six;
+}
+.Panel button[data-operator="+"] {
+  grid-area: plus;
+}
+.Panel button[data-number="7"] {
+  grid-area: seven;
+}
+.Panel button[data-number="8"] {
+  grid-area: eight;
+}
+.Panel button[data-number="9"] {
+  grid-area: nine;
+}
+.Panel button[data-operator="="] {
+  grid-area: equals;
+}
+.Panel button[data-operator="%"] {
+  grid-area: percent;
+}
+.Panel button[data-number="0"] {
+  grid-area: zero;
+}
+.Panel button[data-number="."] {
+  grid-area: dot;
 }
 
 .primary,
@@ -89,9 +158,7 @@ body {
   opacity: 0;
 }
 
-.secondary[data-operator="="] {
-  height: auto;
-  aspect-ratio: 0;
-  grid-row: 4 / 6;
-  grid-column: 4;
+@media (max-width: 540px) {
+  body {
+  }
 }
