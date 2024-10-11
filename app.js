@@ -52,6 +52,25 @@ function showArithmetic(operator) {
     display.textContent = displayValue;
   }
 }
+function handleAthematicMessage() {
+  const buttons = document.querySelector(".buttons");
+  setTimeout(() => {
+    buttons.addEventListener(
+      "click",
+      (e) => {
+        if (e.target.tagName == "BUTTON") {
+          displayValue = e.target.dataset.digit;
+          display.textContent = displayValue;
+        } else {
+          displayValue = "";
+          display.textContent = "";
+        }
+      },
+      { once: true }
+    );
+  }, 1);
+}
+
 function getResult(str = "") {
   if (!str.includes(" ")) {
     str = `${str} + `;
@@ -61,8 +80,16 @@ function getResult(str = "") {
   const op = equationArray[1];
   const b = equationArray[2];
 
-  if (op == "/" && !+b) return "DIVIDE BY 0 WHY?";
-  return operate(+a, op, +b);
+  if (op == "/" && !+b) {
+    handleAthematicMessage();
+    return "DIVIDE BY 0 WHY?";
+  }
+  const result = operate(+a, op, +b);
+  if (Number.isNaN(result)) {
+    handleAthematicMessage();
+    return "Wrong Input";
+  }
+  return result;
 }
 function calculate() {
   const operator = this.dataset.operator;
@@ -80,4 +107,5 @@ function calculate() {
 }
 
 const operators = document.querySelectorAll(".buttons .secondary");
+
 [...operators].forEach((digit) => digit.addEventListener("click", calculate));
