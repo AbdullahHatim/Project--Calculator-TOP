@@ -48,8 +48,6 @@ function clearDisplay() {
 function showDigit() {
   updateDisplay(this.dataset.digit);
 }
-const digits = document.querySelectorAll(".buttons .primary");
-[...digits].forEach((digit) => digit.addEventListener("click", showDigit));
 
 function showArithmetic(operator) {
   if (
@@ -135,6 +133,9 @@ function calculate() {
     clearDisplay();
   }
 }
+
+const digits = document.querySelectorAll(".buttons .primary");
+[...digits].forEach((digit) => digit.addEventListener("click", showDigit));
 
 const operators = document.querySelectorAll(".buttons .secondary");
 [...operators].forEach((digit) => digit.addEventListener("click", calculate));

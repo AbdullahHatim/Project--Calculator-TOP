@@ -53,23 +53,14 @@ body {
   /* border: 1px pink solid; */
 }
 
-.leftPanel,
-.rightPanel {
+.Panel {
   display: flex;
   padding: 20px;
   gap: 10px;
 }
-.rightPanel {
-  flex-direction: column;
-  justify-content: center;
-  padding: 0px;
-  padding-right: 20px;
-}
-
-.leftPanel {
+.Panel {
   flex-wrap: wrap;
   align-items: center;
-  max-width: 320px;
 }
 
 .primary,
