@@ -31,9 +31,22 @@ function operate(a, op, b) {
       return "Invalid Arguments";
   }
 }
-function showDigit() {
-  displayValue += this.dataset.digit;
+
+function setDisplay(str) {
+  displayValue = str;
   display.textContent = displayValue;
+}
+function updateDisplay(str) {
+  displayValue += str;
+  display.textContent = displayValue;
+}
+function clearDisplay() {
+  displayValue = "";
+  display.textContent = "";
+}
+
+function showDigit() {
+  updateDisplay(this.dataset.digit);
 }
 const digits = document.querySelectorAll(".buttons .primary");
 [...digits].forEach((digit) => digit.addEventListener("click", showDigit));
@@ -45,11 +58,9 @@ function showArithmetic(operator) {
     })
   ) {
     const result = getResult(displayValue);
-    displayValue = `${result} ${operator} `;
-    display.textContent = displayValue;
+    setDisplay(`${result} ${operator} `);
   } else {
-    displayValue += ` ${operator} `;
-    display.textContent = displayValue;
+    updateDisplay(` ${operator} `);
   }
 }
 function handleAthematicMessage() {
@@ -58,12 +69,11 @@ function handleAthematicMessage() {
     buttons.addEventListener(
       "click",
       (e) => {
-        if (e.target.tagName == "BUTTON") {
-          displayValue = e.target.dataset.digit;
-          display.textContent = displayValue;
+        console.log(e.target.className);
+        if (e.target.className == ".primary") {
+          setDisplay(e.target.dataset.digit);
         } else {
-          displayValue = "";
-          display.textContent = "";
+          clearDisplay();
         }
       },
       { once: true }
@@ -76,9 +86,7 @@ function getResult(str = "") {
     str = `${str} + `;
   }
   const equationArray = str.split(" ");
-  const a = equationArray[0];
-  const op = equationArray[1];
-  const b = equationArray[2];
+  const [a, op, b] = [...equationArray];
 
   if (op == "/" && !+b) {
     handleAthematicMessage();
@@ -98,14 +106,11 @@ function calculate() {
     showArithmetic.call(this, operator);
   } else if (operator === "=") {
     const result = getResult(displayValue);
-    displayValue = `${result}`;
-    display.textContent = displayValue;
+    setDisplay(`${result}`);
   } else if (operator === "ac") {
-    displayValue = "";
-    display.textContent = "";
+    clearDisplay();
   }
 }
 
 const operators = document.querySelectorAll(".buttons .secondary");
-
 [...operators].forEach((digit) => digit.addEventListener("click", calculate));
