@@ -23,6 +23,7 @@ body {
   align-items: center;
 }
 .calculator {
+  width: 500px;
   border: 1px black solid;
   background-color: var(--background-color);
   padding: 20px;
@@ -37,9 +38,10 @@ body {
 #display {
   display: flex;
   align-items: center;
+  overflow: hidden;
   background-color: white;
   width: 100%;
-  height: 50px;
+  height: 100px;
   border-radius: 20px;
   padding: 20px;
   font-size: 2.5em;
