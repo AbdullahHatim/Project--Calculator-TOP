@@ -1,6 +1,3 @@
-let firstOperand = 0;
-let operator = "+";
-let secondOperand = 0;
 let displayValue = "";
 
 function add() {
@@ -34,3 +31,16 @@ function operate(a, op, b) {
       return "Invalid Arguments";
   }
 }
+function showDigit() {
+  displayValue += this.dataset.digit;
+  display.textContent = displayValue;
+}
+const digits = document.querySelectorAll(".buttons .primary");
+[...digits].forEach((digit) => digit.addEventListener("click", showDigit));
+
+function calculate() {
+  console.log(this.dataset.operator);
+}
+
+const operators = document.querySelectorAll(".buttons .secondary");
+[...operators].forEach((digit) => digit.addEventListener("click", calculate));
