@@ -64,7 +64,8 @@ body {
 }
 
 .primary,
-.secondary {
+.secondary,
+.ghost {
   height: 100px;
   border-radius: 50%;
   aspect-ratio: 1/1;
@@ -84,4 +85,8 @@ body {
 
 .secondary {
   color: var(--secondary-text-color);
+}
+
+.ghost {
+  opacity: 0;
 }
