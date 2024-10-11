@@ -44,22 +44,31 @@ function showArithmetic(operator) {
       return ["+", "-", "*", "/"].includes(v);
     })
   ) {
-    console.log(eval(`${displayValue}`));
-    displayValue = `${eval(`${displayValue}`)} ${operator} `;
+    const result = getResult(displayValue);
+    displayValue = `${result} ${operator} `;
     display.textContent = displayValue;
   } else {
     displayValue += ` ${operator} `;
     display.textContent = displayValue;
   }
 }
+function getResult(str = "") {
+  const equationArray = str.split(" ");
+  const a = equationArray[0];
+  const op = equationArray[1];
+  const b = equationArray[2];
 
+  return operate(+a, op, +b);
+}
 function calculate() {
   const operator = this.dataset.operator;
 
   if (["+", "-", "*", "/"].includes(operator)) {
     showArithmetic.call(this, operator);
   } else if (operator === "=") {
-    console.log(eval(`${displayValue}`));
+    const result = getResult(displayValue);
+    displayValue = `${result}`;
+    display.textContent = displayValue;
   } else if (operator === "ac") {
     displayValue = "";
     display.textContent = "";
