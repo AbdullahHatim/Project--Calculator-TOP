@@ -36,7 +36,6 @@ function operate(a, op, b) {
       return "Invalid Arguments";
   }
 }
-console.log(display);
 function setDisplay(str) {
   displayValue = str;
   display.textContent = displayValue;
@@ -149,3 +148,18 @@ const digits = document.querySelectorAll(".primary");
 
 const operators = document.querySelectorAll(".secondary");
 [...operators].forEach((digit) => digit.addEventListener("click", calculate));
+
+addEventListener("keydown", (e) => {
+  if ("123456789.".split("").includes(e.key)) {
+    let digit = document.querySelector(`[data-digit="${e.key}"]`);
+    digit.dispatchEvent(new Event("click"));
+  } else if (e.key == "Enter") {
+    let button = document.querySelector(`[data-operator="="]`);
+    if (button) button.dispatchEvent(new Event("click"));
+  } else {
+    let button = document.querySelector(
+      `[data-operator="${e.key.toLowerCase()}"]`
+    );
+    if (button) button.dispatchEvent(new Event("click"));
+  }
+});
