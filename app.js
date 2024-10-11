@@ -55,21 +55,14 @@ function showArithmetic(operator) {
 
 function calculate() {
   const operator = this.dataset.operator;
-  switch (operator) {
-    case "+":
-    case "-":
-    case "*":
-    case "/":
-      showArithmetic.call(this, operator);
-      break;
 
-    case "=":
-      console.log(eval(`${displayValue}`));
-      break;
-    case "ac":
-      displayValue = "";
-      display.textContent = "";
-      break;
+  if (["+", "-", "*", "/"].includes(operator)) {
+    showArithmetic.call(this, operator);
+  } else if (operator === "=") {
+    console.log(eval(`${displayValue}`));
+  } else if (operator === "ac") {
+    displayValue = "";
+    display.textContent = "";
   }
 }
 
