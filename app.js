@@ -38,8 +38,39 @@ function showDigit() {
 const digits = document.querySelectorAll(".buttons .primary");
 [...digits].forEach((digit) => digit.addEventListener("click", showDigit));
 
+function showArithmetic(operator) {
+  if (
+    displayValue.split(" ").some((v) => {
+      return ["+", "-", "*", "/"].includes(v);
+    })
+  ) {
+    console.log(eval(`${displayValue}`));
+    displayValue = `${eval(`${displayValue}`)} ${operator} `;
+    display.textContent = displayValue;
+  } else {
+    displayValue += ` ${operator} `;
+    display.textContent = displayValue;
+  }
+}
+
 function calculate() {
-  console.log(this.dataset.operator);
+  const operator = this.dataset.operator;
+  switch (operator) {
+    case "+":
+    case "-":
+    case "*":
+    case "/":
+      showArithmetic.call(this, operator);
+      break;
+
+    case "=":
+      console.log(eval(`${displayValue}`));
+      break;
+    case "ac":
+      displayValue = "";
+      display.textContent = "";
+      break;
+  }
 }
 
 const operators = document.querySelectorAll(".buttons .secondary");
