@@ -37,13 +37,6 @@ body {
   padding: 20px;
 }
 
-.buttons {
-  display: flex;
-  flex-direction: row-reverse;
-  justify-content: center;
-  /* border: 1px pink solid; */
-}
-
 .Panel {
   max-width: 100%;
   display: grid;
@@ -171,6 +164,51 @@ body {
 }
 
 @media (max-width: 540px) {
+  .results {
+    display: none;
+  }
   body {
+    font-size: 0.8em;
+    background-color: var(--background-color);
+  }
+  .calculator {
+    display: flex;
+    justify-content: center;
+    border-radius: 0;
+    height: 100%;
+    border: none;
+  }
+  .Panel {
+    width: 90%;
+    display: grid;
+    gap: 10px;
+    column-gap: 30px;
+    justify-content: center;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-areas:
+      "display display display display"
+      "AC divide multiply backspace"
+      "seven eight nine minus"
+      "one five six plus"
+      "four two three equals"
+      "percent zero dot equals";
+  }
+
+  #display {
+    padding-top: 15px;
+    display: inline-block;
+    width: 100%;
+  }
+  .secondary[data-operator="="] {
+    height: 60;
+    aspect-ratio: 1/2;
+  }
+  .primary,
+  .secondary,
+  .ghost {
+    height: 60px;
+    border-radius: 30px;
+    aspect-ratio: 1/1;
+    font-size: 2.5em;
   }
 }

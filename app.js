@@ -36,7 +36,7 @@ function operate(a, op, b) {
       return "Invalid Arguments";
   }
 }
-
+console.log(display);
 function setDisplay(str) {
   displayValue = str;
   display.textContent = displayValue;
@@ -144,8 +144,8 @@ function calculate() {
   }
 }
 
-const digits = document.querySelectorAll(".buttons .primary");
+const digits = document.querySelectorAll(".primary");
 [...digits].forEach((digit) => digit.addEventListener("click", showDigit));
 
-const operators = document.querySelectorAll(".buttons .secondary");
+const operators = document.querySelectorAll(".secondary");
 [...operators].forEach((digit) => digit.addEventListener("click", calculate));
