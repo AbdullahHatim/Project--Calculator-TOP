@@ -54,20 +54,18 @@ body {
 }
 
 .Panel {
-  display: flex;
+  display: grid;
   padding: 20px;
   gap: 10px;
-}
-.Panel {
   flex-wrap: wrap;
-  align-items: center;
+  grid-template-columns: repeat(4, 1fr);
 }
 
 .primary,
 .secondary,
 .ghost {
   height: 100px;
-  border-radius: 50%;
+  border-radius: 50px;
   aspect-ratio: 1/1;
   font-size: 2.5em;
   background-color: var(--background-color);
@@ -89,4 +87,11 @@ body {
 
 .ghost {
   opacity: 0;
+}
+
+.secondary[data-operator="="] {
+  height: auto;
+  aspect-ratio: 0;
+  grid-row: 4 / 6;
+  grid-column: 4;
 }
