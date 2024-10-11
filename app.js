@@ -150,7 +150,7 @@ const operators = document.querySelectorAll(".secondary");
 [...operators].forEach((digit) => digit.addEventListener("click", calculate));
 
 addEventListener("keydown", (e) => {
-  if ("123456789.".split("").includes(e.key)) {
+  if ("1234567890.".split("").includes(e.key)) {
     let digit = document.querySelector(`[data-digit="${e.key}"]`);
     digit.dispatchEvent(new Event("click"));
   } else if (e.key == "Enter") {
