@@ -58,7 +58,8 @@ function showArithmetic(operator) {
     })
   ) {
     const result = getResult(displayValue);
-    setDisplay(`${result} ${operator} `);
+    if (Number.isNaN(+result)) setDisplay(result);
+    else setDisplay(`${result} ${operator} `);
   } else {
     updateDisplay(` ${operator} `);
   }
@@ -69,8 +70,7 @@ function handleAthematicMessage() {
     buttons.addEventListener(
       "click",
       (e) => {
-        console.log(e.target.className);
-        if (e.target.className == ".primary") {
+        if (e.target.className == "primary") {
           setDisplay(e.target.dataset.digit);
         } else {
           clearDisplay();
