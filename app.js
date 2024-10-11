@@ -12,6 +12,9 @@ function multiply() {
 function divide() {
   return [...arguments].reduce((tot, curr) => tot / curr);
 }
+function modulus() {
+  return [...arguments].reduce((tot, curr) => tot % curr);
+}
 
 function operate(a, op, b) {
   switch (op) {
@@ -27,6 +30,8 @@ function operate(a, op, b) {
     case "/":
       return divide(a, b);
 
+    case "%":
+      return modulus(a, b);
     default:
       return "Invalid Arguments";
   }
@@ -52,7 +57,7 @@ function showDigit() {
 function showArithmetic(operator) {
   if (
     displayValue.split(" ").some((v) => {
-      return ["+", "-", "*", "/"].includes(v);
+      return ["+", "-", "*", "/", "%"].includes(v);
     })
   ) {
     const result = getResult(displayValue);
@@ -124,7 +129,7 @@ function getResult(str = "") {
 function calculate() {
   const operator = this.dataset.operator;
 
-  if (["+", "-", "*", "/"].includes(operator)) {
+  if (["+", "-", "*", "/", "%"].includes(operator)) {
     showArithmetic.call(this, operator);
   } else if (operator === "=") {
     const result = getResult(displayValue);
