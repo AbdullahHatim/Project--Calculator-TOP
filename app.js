@@ -53,11 +53,15 @@ function showArithmetic(operator) {
   }
 }
 function getResult(str = "") {
+  if (!str.includes(" ")) {
+    str = `${str} + `;
+  }
   const equationArray = str.split(" ");
   const a = equationArray[0];
   const op = equationArray[1];
   const b = equationArray[2];
 
+  if (op == "/" && !+b) return "DIVIDE BY 0 WHY?";
   return operate(+a, op, +b);
 }
 function calculate() {
