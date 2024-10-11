@@ -131,6 +131,11 @@ function calculate() {
     setDisplay(`${result}`);
   } else if (operator === "ac") {
     clearDisplay();
+  } else if (operator === "backspace") {
+    const equationArray = displayValue.split(" ");
+    if (equationArray.length === 1) setDisplay(displayValue.slice(0, -1));
+    else if (!!equationArray[2]) setDisplay(displayValue.slice(0, -1));
+    else setDisplay(equationArray[0]);
   }
 }
 
