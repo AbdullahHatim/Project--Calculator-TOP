@@ -1,37 +1,21 @@
 let displayValue = "";
 
-function add() {
-  return [...arguments].reduce((tot, curr) => tot + curr);
-}
-function subtract() {
-  return [...arguments].reduce((tot, curr) => tot - curr);
-}
-function multiply() {
-  return [...arguments].reduce((tot, curr) => tot * curr);
-}
-function divide() {
-  return [...arguments].reduce((tot, curr) => tot / curr);
-}
-function modulus() {
-  return [...arguments].reduce((tot, curr) => tot % curr);
-}
-
 function operate(a, op, b) {
   switch (op) {
     case "+":
-      return add(a, b);
+      return a + b;
 
     case "-":
-      return subtract(a, b);
+      return a - b;
 
-    case "*":
-      return multiply(a, b);
+    case "x":
+      return a * b;
 
     case "/":
-      return divide(a, b);
+      return a / b;
 
     case "%":
-      return modulus(a, b);
+      return a % b;
     default:
       return "Invalid Arguments";
   }
@@ -56,7 +40,7 @@ function showDigit() {
 function showArithmetic(operator) {
   if (
     displayValue.split(" ").some((v) => {
-      return ["+", "-", "*", "/", "%"].includes(v);
+      return ["+", "-", "x", "/", "%"].includes(v);
     })
   ) {
     const result = getResult(displayValue);
@@ -67,7 +51,6 @@ function showArithmetic(operator) {
   }
 }
 function handleAthematicMessage() {
-  const buttons = document.querySelector(".Panel");
   setTimeout(() => {
     buttons.addEventListener(
       "click",
@@ -107,6 +90,7 @@ function formatLargeNumber(number, maxDigits = 14) {
     }
   }
 }
+
 function getResult(str = "") {
   if (!str.includes(" ")) {
     str = `${str} + `;
@@ -125,10 +109,11 @@ function getResult(str = "") {
   }
   return formatLargeNumber(result, 8);
 }
+
 function calculate() {
   const operator = this.dataset.operator;
 
-  if (["+", "-", "*", "/", "%"].includes(operator)) {
+  if (["+", "-", "x", "/", "%"].includes(operator)) {
     showArithmetic.call(this, operator);
   } else if (operator === "=") {
     const result = getResult(displayValue);
