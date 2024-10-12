@@ -1,12 +1,13 @@
 :root {
-  --background-color: lightslategray;
-  --primary-color: #3abef9;
+  --background-color: aliceblue;
+  --secondary-background-color: white;
+  --primary-color: lightslategray;
   --secondary-color: rgb(95, 108, 122);
   --text-color: white;
   --secondary-text-color: #f9e63a;
 }
 html {
-  font-size: 14pt;
+  font-size: 12pt;
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
 
@@ -16,141 +17,74 @@ html {
 }
 
 body {
-  min-height: 100svh;
-  background-color: aliceblue;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-.calculator {
-  box-sizing: border-box;
-  max-width: 540px;
-  border: 1px black solid;
+  position: relative;
+  height: 100svh;
   background-color: var(--background-color);
-  padding: 20px;
-  border-radius: 20px;
-}
-.results {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 20px;
 }
 
-.Panel {
-  max-width: 100%;
+#calculator {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  min-height: 500px;
+  min-width: 320px;
+  max-width: 69%;
+  padding: 40px;
+  border-radius: 20px;
+  overflow: hidden;
+  background-color: var(--primary-color);
+}
+
+#display {
+  box-sizing: border-box;
+  display: flex;
+  padding: 10px 20px;
+  overflow: hidden;
+  align-items: flex-start;
+  border-radius: 10px;
+  height: 130px;
+  margin-bottom: 30px;
+  margin-top: 20px;
+  font-size: 2rem;
+  background-color: var(--secondary-background-color);
+}
+#buttons {
+  flex-grow: 1;
+  background-color: var(--primary-color);
   display: grid;
-  padding: 20px;
   gap: 10px;
-  flex-wrap: wrap;
-  grid-template-columns: repeat(4, 1fr);
+  grid-auto-flow: row;
+  justify-content: space-between;
+  align-content: space-between;
   grid-template-areas:
-    "display display display display"
-    "AC divide multiply backspace"
+    "ac divide multiply backspace"
     "seven eight nine minus"
     "one five six plus"
     "four two three equals"
     "percent zero dot equals";
 }
 
-.secondary[data-operator="="] {
-  height: auto;
-  aspect-ratio: 0;
-}
-
-#display {
-  box-sizing: border-box;
-  width: 17ch;
-  overflow: hidden;
-  border-radius: 20px;
-  margin-bottom: 30px;
-  background-color: white;
-  height: 120px;
-  font-size: 2.5em;
-  grid-area: display;
-
-  display: flex;
-  align-items: flex-start;
-  padding: 0 20px;
-  line-height: 1.2em;
-  /* white-space: nowrap; */
-  text-overflow: ellipsis;
-}
-
-.Panel button[data-operator="AC"] {
-  grid-area: AC;
-}
-.Panel button[data-operator="/"] {
-  grid-area: divide;
-}
-.Panel button[data-operator="*"] {
-  grid-area: multiply;
-}
-.Panel button[data-operator="backspace"] {
-  grid-area: backspace;
-}
-.Panel button[data-number="1"] {
-  grid-area: one;
-}
-.Panel button[data-number="2"] {
-  grid-area: two;
-}
-.Panel button[data-number="3"] {
-  grid-area: three;
-}
-.Panel button[data-operator="-"] {
-  grid-area: minus;
-}
-.Panel button[data-number="4"] {
-  grid-area: four;
-}
-.Panel button[data-number="5"] {
-  grid-area: five;
-}
-.Panel button[data-number="6"] {
-  grid-area: six;
-}
-.Panel button[data-operator="+"] {
-  grid-area: plus;
-}
-.Panel button[data-number="7"] {
-  grid-area: seven;
-}
-.Panel button[data-number="8"] {
-  grid-area: eight;
-}
-.Panel button[data-number="9"] {
-  grid-area: nine;
-}
-.Panel button[data-operator="="] {
-  grid-area: equals;
-}
-.Panel button[data-operator="%"] {
-  grid-area: percent;
-}
-.Panel button[data-number="0"] {
-  grid-area: zero;
-}
-.Panel button[data-number="."] {
-  grid-area: dot;
-}
-
-.primary,
-.secondary,
-.ghost {
-  height: 100px;
-  border-radius: 50px;
+#buttons button:not(button:last-child) {
+  width: 70px;
   aspect-ratio: 1/1;
-  font-size: 2.5em;
-  background-color: var(--background-color);
+}
+
+#buttons button {
   border: none;
+  background-color: var(--primary-color);
+  border-radius: 10000px;
+
+  font-size: 2.5rem;
   box-shadow: 0px 0px 7px 0px var(--secondary-color);
 }
 
-.primary:active,
-.secondary:active {
+#buttons button:active {
   background-color: var(--secondary-color);
 }
+
 .primary {
   color: var(--text-color);
 }
@@ -159,56 +93,91 @@ body {
   color: var(--secondary-text-color);
 }
 
-.ghost {
-  opacity: 0;
+button[data-operator="ac"] {
+  grid-area: ac;
+}
+button[data-operator="/"] {
+  grid-area: divide;
+}
+button[data-operator="*"] {
+  grid-area: multiply;
+}
+button[data-operator="backspace"] {
+  grid-area: backspace;
+}
+button[data-number="1"] {
+  grid-area: one;
+}
+button[data-number="2"] {
+  grid-area: two;
+}
+button[data-number="3"] {
+  grid-area: three;
+}
+button[data-operator="-"] {
+  grid-area: minus;
+}
+button[data-number="4"] {
+  grid-area: four;
+}
+button[data-number="5"] {
+  grid-area: five;
+}
+button[data-number="6"] {
+  grid-area: six;
+}
+button[data-operator="+"] {
+  grid-area: plus;
+}
+button[data-number="7"] {
+  grid-area: seven;
+}
+button[data-number="8"] {
+  grid-area: eight;
+}
+button[data-number="9"] {
+  grid-area: nine;
+}
+button[data-operator="="] {
+  grid-area: equals;
+}
+button[data-operator="%"] {
+  grid-area: percent;
+}
+button[data-number="0"] {
+  grid-area: zero;
+}
+button[data-number="."] {
+  grid-area: dot;
 }
 
-@media (max-width: 540px) {
-  .results {
-    display: none;
-  }
+@media (max-width: 400px) {
   body {
-    font-size: 0.8em;
-    background-color: var(--background-color);
+    background-color: var(--primary-color);
   }
-  .calculator {
-    display: flex;
-    justify-content: center;
-    border-radius: 0;
-    height: 100%;
-    border: none;
+  #calculator {
+    align-items: normal;
+    padding: 0px;
+    min-width: 80%;
+    gap: 0px;
   }
-  .Panel {
-    width: 90%;
+  #buttons {
     display: grid;
-    gap: 10px;
-    column-gap: 30px;
-    justify-content: center;
-    grid-template-columns: repeat(3, 1fr);
-    grid-template-areas:
-      "display display display display"
-      "AC divide multiply backspace"
-      "seven eight nine minus"
-      "one five six plus"
-      "four two three equals"
-      "percent zero dot equals";
+    justify-content: space-around;
+    align-content: unset;
+  }
+  #buttons button:not(button:last-child) {
+    width: auto;
+    aspect-ratio: 1/1;
   }
 
-  #display {
-    padding-top: 15px;
-    display: inline-block;
-    width: 100%;
-  }
-  .secondary[data-operator="="] {
-    height: 60;
-    aspect-ratio: 1/2;
-  }
-  .primary,
-  .secondary,
-  .ghost {
-    height: 60px;
-    border-radius: 30px;
-    aspect-ratio: 1/1;
-    font-size: 2.5em;
+  #buttons button {
+    border: none;
+    background-color: var(--primary-color);
+    border-radius: 10000px;
+
+    font-size: 2rem;
+    padding: 5px;
+    box-shadow: 0px 0px 7px 0px var(--secondary-color);
   }
 }
