@@ -36,6 +36,7 @@ body {
   border-radius: 20px;
   overflow: hidden;
   background-color: var(--primary-color);
+  box-shadow: 0px 1px 10px 0px var(--secondary-color);
 }
 
 #display {
@@ -71,14 +72,23 @@ body {
   width: 70px;
   aspect-ratio: 1/1;
 }
-
 #buttons button {
+  box-sizing: border-box;
+  text-align: center;
   border: none;
   background-color: var(--primary-color);
   border-radius: 10000px;
 
   font-size: 2.5rem;
   box-shadow: 0px 0px 7px 0px var(--secondary-color);
+}
+
+#buttons button[data-operator="*"] {
+  padding-bottom: 5px;
+}
+#buttons button:last-child {
+  color: var(--text-color);
+  background-color: var(--secondary-text-color);
 }
 
 #buttons button:active {
@@ -160,6 +170,7 @@ button[data-number="."] {
     padding: 0px;
     min-width: 80%;
     gap: 0px;
+    box-shadow: none;
   }
   #buttons {
     display: grid;
@@ -169,6 +180,10 @@ button[data-number="."] {
   #buttons button:not(button:last-child) {
     width: auto;
     aspect-ratio: 1/1;
+  }
+
+  #buttons button[data-operator="*"] {
+    padding-bottom: 10px;
   }
 
   #buttons button {
