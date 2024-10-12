@@ -67,7 +67,7 @@ function showArithmetic(operator) {
   }
 }
 function handleAthematicMessage() {
-  const buttons = document.querySelector(".buttons");
+  const buttons = document.querySelector(".Panel");
   setTimeout(() => {
     buttons.addEventListener(
       "click",
