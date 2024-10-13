@@ -8,7 +8,7 @@ function operate(a, op, b) {
     case "-":
       return a - b;
 
-    case "x":
+    case "×":
       return a * b;
 
     case "/":
@@ -40,7 +40,7 @@ function showDigit() {
 function showArithmetic(operator) {
   if (
     displayValue.split(" ").some((v) => {
-      return ["+", "-", "x", "/", "%"].includes(v);
+      return ["+", "-", "×", "/", "%"].includes(v);
     })
   ) {
     const result = getResult(displayValue);
@@ -113,7 +113,7 @@ function getResult(str = "") {
 function calculate() {
   const operator = this.dataset.operator;
 
-  if (["+", "-", "x", "/", "%"].includes(operator)) {
+  if (["+", "-", "×", "/", "%"].includes(operator)) {
     showArithmetic.call(this, operator);
   } else if (operator === "=") {
     const result = getResult(displayValue);
